@@ -563,6 +563,10 @@ class Passivbot:
                             "1d": 1440,
                             "1w": 10080,
                         }
+                        for sym in eligible_symbols: 
+                            if not self.ohlcvs[sym]: 
+                                eligible_symbols.remove(sym)
+                                
                         sym_no_min_vol = [symbol for symbol in eligible_symbols if (self.volumes[symbol]/len(self.ohlcvs[symbol])) < ((self.config["min_1m_volume_filter"] * interval_map[self.config["ohlcv_interval"]]))]
                         
                         eligible_symbols = [symbol for symbol in eligible_symbols if (self.volumes[symbol]/len(self.ohlcvs[symbol])) >= ((self.config["min_1m_volume_filter"] * interval_map[self.config["ohlcv_interval"]]))]
@@ -582,9 +586,15 @@ class Passivbot:
                     print('N eligible symbols after volume clip filter', len(eligible_symbols))
                #     print("eli_sym: ", eligible_symbols)
 
+                if len(eligible_symbols) < self.config["n_longs"]: print(f"n eligible_symbols {len(eligible_symbols)} < n_longs {self.config['n_longs']}")
+
                 self.calc_noisiness()  # ideal symbols are high noise symbols
        
                 eligible_symbols = sorted(eligible_symbols, key=lambda x: self.noisiness[x], reverse=True)
+                
+                clip_tres = 1-float(self.config["relative_volume_filter_clip_pct"])
+
+                print('Symbols to trade: ', eligible_symbols[:min(self.config["n_longs"],int(round(len(eligible_symbols) * clip_tres)))])
             
                 if not eligible_symbols:
                     print('no coins to trade...')
