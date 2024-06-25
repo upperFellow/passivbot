@@ -163,7 +163,7 @@ async def main():
     parser.add_argument(
         "-sb",
         "--start_balance",
-        type=int,
+        type=float,
         required=False,
         dest="start_balance",
         default=None,
