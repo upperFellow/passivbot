@@ -161,7 +161,7 @@ async def main():
         help="set n backtest slices to plot",
     )
     parser.add_argument(
-        "-sb",
+        "-stb",
         "--start_balance",
         type=float,
         required=False,
