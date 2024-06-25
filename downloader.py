@@ -1084,10 +1084,7 @@ async def download_ohlcvs_bybit(symbol, start_date, end_date, spot=False, downlo
 
 
 async def get_bybit_webpage(base_url: str, symbol: str):
-<<<<<<< Updated upstream
-    return urlopen(f"{base_url}{symbol}/").read().decode()
-=======
-   # return urlopen(f"{base_url}{symbol}/").read().decode()
+    # return urlopen(f"{base_url}{symbol}/").read().decode()
     import random
     headers = {'User-Agent': 'Mozilla/5.0'}
     
@@ -1108,7 +1105,6 @@ async def get_bybit_webpage(base_url: str, symbol: str):
 
     raise Exception(f"Failed to retrieve {base_url}{symbol}/ after several attempts.")
 
->>>>>>> Stashed changes
 
 
 async def get_bybit_trades(base_url: str, symbol: str, filenames: [str]):
