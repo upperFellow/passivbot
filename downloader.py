@@ -14,6 +14,7 @@ from functools import reduce
 import zipfile
 import traceback
 import aiohttp
+import random
 
 import numpy as np
 import pandas as pd
@@ -1080,12 +1081,13 @@ async def download_ohlcvs_bybit(symbol, start_date, end_date, spot=False, downlo
         if len(dfs) == 0:
             return pd.DataFrame(columns=["timestamp", "open", "high", "low", "close", "volume"])
         df = pd.concat(dfs.values()).sort_values("timestamp").reset_index()
+
+        await asyncio.sleep((40) * random.random())
         return df[["timestamp", "open", "high", "low", "close", "volume"]]
 
 
 async def get_bybit_webpage(base_url: str, symbol: str):
     # return urlopen(f"{base_url}{symbol}/").read().decode()
-    import random
     headers = {'User-Agent': 'Mozilla/5.0'}
     
     async with aiohttp.ClientSession(headers=headers) as session:
