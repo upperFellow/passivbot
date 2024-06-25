@@ -1093,7 +1093,8 @@ async def get_bybit_webpage(base_url: str, symbol: str):
             try:
                 async with session.get(f"{base_url}{symbol}/") as response:
                     if response.status == 200:
-                        return await urlopen(f"{base_url}{symbol}/").read().decode()
+                        return await response.text()
+                        #return await urlopen(f"{base_url}{symbol}/").read().decode()
                     elif response.status == 403:
                         print(f"Access forbidden for {base_url}{symbol}/. Retrying...")
                         await asyncio.sleep(2 ** attempt + random.random())  # Exponential backoff
