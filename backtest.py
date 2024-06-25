@@ -163,12 +163,11 @@ async def main():
     parser.add_argument(
         "-sb",
         "--start_balance",
-        "--start_balance",
         type=int,
         required=False,
         dest="start_balance",
         default=None,
-        help="set --start_balance",
+        help="set start_balance",
     )
     parser.add_argument(
         "-dp",
