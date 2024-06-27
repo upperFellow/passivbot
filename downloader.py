@@ -1082,7 +1082,7 @@ async def download_ohlcvs_bybit(symbol, start_date, end_date, spot=False, downlo
             return pd.DataFrame(columns=["timestamp", "open", "high", "low", "close", "volume"])
         df = pd.concat(dfs.values()).sort_values("timestamp").reset_index()
 
-        await asyncio.sleep((40) * random.random())
+        await asyncio.sleep((2) * random.random())
         return df[["timestamp", "open", "high", "low", "close", "volume"]]
 
 
@@ -1095,17 +1095,17 @@ async def get_bybit_webpage(base_url: str, symbol: str):
             try:
                 async with session.get(f"{base_url}{symbol}/") as response:
                     if response.status == 200:
-                        await asyncio.sleep(20 * random.random())
+                        await asyncio.sleep(2 * random.random())
                         return await response.text()
                         #return await urlopen(f"{base_url}{symbol}/").read().decode()
                     elif response.status == 403:
                         print(f"Access forbidden for {base_url}{symbol}/. Retrying...")
-                        await asyncio.sleep(2 ** attempt + 40 * random.random())  # Exponential backoff
+                        await asyncio.sleep(2 ** attempt + 2 * random.random())  # Exponential backoff
                     else:
                         response.raise_for_status()
             except aiohttp.ClientError as e:
                 print(f"Request failed: {e}. Retrying...")
-                await asyncio.sleep(2 ** attempt + 40 * random.random())  # Exponential backoff
+                await asyncio.sleep(2 ** attempt + 2 * random.random())  # Exponential backoff
 
     raise Exception(f"Failed to retrieve {base_url}{symbol}/ after several attempts.")
 
