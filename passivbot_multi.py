@@ -546,7 +546,7 @@ class Passivbot:
                
                 if self.config["funding_rate_filter"] > 0.0 : 
                   #  eligible_symbols = [symbol for symbol in eligible_symbols if abs(self.fund_rates[symbol]) <= self.config["funding_rate_filter"]]
-                    eligible_symbols = [symbol for symbol in eligible_symbols if (self.fund_rates[symbol] >= 0 and self.fund_rates[symbol] <= self.config["funding_rate_filter"])]
+                    eligible_symbols = [symbol for symbol in eligible_symbols if (self.fund_rates[symbol] >= -0.0002 and self.fund_rates[symbol] <= self.config["funding_rate_filter"])]
                     print('N eligible symbols after funding rate filter', len(eligible_symbols))
                
                 self.calc_volumes()
