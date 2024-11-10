@@ -717,7 +717,7 @@ def fetch_market_specific_settings_multi(symbols=None, exchange="binance"):
             info[symbol]["price_step"] = info[symbol]["precision"]["price"]
             info[symbol]["qty_step"] = info[symbol]["precision"]["amount"]
             info[symbol]["c_mult"] = info[symbol]["contractSize"]
-            info[symbol]["min_cost"] = 0.0
+            info[symbol]["min_cost"] = 5.0 #0.0
             info[symbol]["min_qty"] = info[symbol]["limits"]["amount"]["min"]
             # ccxt reports incorrect fees for bybit perps
             info[symbol]["maker"] = info[symbol]["maker_fee"] = 0.0002
