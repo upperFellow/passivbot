@@ -595,9 +595,9 @@ class Passivbot:
        
                 eligible_symbols = sorted(eligible_symbols, key=lambda x: self.noisiness[x], reverse=True)
                 
-                clip_tres = 1-float(self.config["relative_volume_filter_clip_pct"])
+                #clip_tres = 1-float(self.config["relative_volume_filter_clip_pct"])
 
-                print('Symbols to trade: ', eligible_symbols[:min(self.config["n_longs"],int(round(len(eligible_symbols) * clip_tres)))])
+                print('Symbols to trade: ', eligible_symbols) #[:min(self.config["n_longs"],int(round(len(eligible_symbols) * clip_tres)))])
             
                 if not eligible_symbols:
                     print('no coins to trade...')
