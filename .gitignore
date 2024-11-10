@@ -357,3 +357,5 @@ reports/*
 configs/*
 
 caches/*
+
+binance.py.bak
